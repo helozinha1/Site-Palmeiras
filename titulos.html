@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Títulos do Palmeiras</title>
+    
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon"> 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <style>
+        /* Estilos CSS da sua página de Títulos */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #004d40; /* Verde escuro do Palmeiras */
+            color: white;
+            overflow-x: hidden; /* Evita barras de rolagem horizontais indesejadas */
+        }
+
+        header {
+            background-color: rgba(5, 33, 9, 0.8); /* Verde muito escuro com transparência */
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed; /* Fixa o cabeçalho no topo da página */
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Garante que o cabeçalho fique acima de outros elementos */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra suave */
+            box-sizing: border-box; /* Inclui padding e borda na largura/altura total */
+        }
+
+        .header-palmeiras-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-palmeiras-title .palmeiras-gradient {
+            background: linear-gradient(to right, #76ff03, #008000, #004d40); /* Gradiente de verde */
+            -webkit-background-clip: text; /* Corta o fundo para o texto (WebKit) */
+            background-clip: text; /* Corta o fundo para o texto */
+            -webkit-text-fill-color: transparent; /* Torna a cor do texto transparente (WebKit) */
+            color: transparent; /* Cor de fallback para navegadores que não suportam */
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: color 0.3s ease; /* Transição suave na cor ao passar o mouse */
+        }
+
+        nav a:hover {
+            color: #76ff03; /* Verde vibrante no hover */
+        }
+
+        /* Espaçamento para o header fixo no topo da página */
+        .page-hero-spacing {
+            height: 100px; /* Altura equivalente ao header para evitar sobreposição */
+        }
+
+        /* --- Seção "Títulos" (adaptada do estilo da seção "Sobre") --- */
+        .titles-section {
+            background-color: #ffffff; /* Fundo branco para o conteúdo principal */
+            color: #333; /* Texto em cinza escuro */
+            padding: 60px 20px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto; /* Centraliza a seção na página */
+        }
+
+        .titles-section h2 {
+            color: #004d40; /* Verde escuro para o título */
+            font-size: 3em;
+            margin-bottom: 30px;
+            font-weight: 700; 
+        }
+
+        .titles-section p {
+            font-size: 1.1em;
+            line-height: 1.6; /* Espaçamento entre linhas para melhor leitura */
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400; 
+        }
+
+        .titles-section ul {
+            list-style: none; /* Remove os marcadores de lista padrão */
+            padding: 0;
+            max-width: 800px;
+            margin: 30px auto;
+            text-align: left; /* Alinha o texto da lista à esquerda */
+        }
+
+        .titles-section ul li {
+            background-color: #e8f5e9; /* Um verde bem clarinho para os itens da lista */
+            margin-bottom: 10px;
+            padding: 15px 20px;
+            border-radius: 8px; /* Cantos arredondados */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra suave para destacar os itens */
+            display: flex;
+            justify-content: space-between; /* Espaço entre o nome do título e o ano */
+            align-items: center;
+            font-size: 1.1em;
+            color: #004d40;
+            font-weight: 500;
+        }
+
+        .titles-section ul li span {
+            font-weight: 700;
+            color: #008000; /* Verde mais escuro para o ano */
+        }
+
+        /* --- Rodapé (Footer) --- */
+        footer {
+            background-color: #052109; /* Verde bem escuro, quase preto */
+            color: #a5d6a7; /* Verde claro para o texto */
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.9em;
+            border-top: 3px solid #004d40; /* Linha verde mais escura no topo do rodapé */
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap; /* Permite que os itens do rodapé quebrem a linha em telas menores */
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px; /* Espaço entre os itens do rodapé */
+        }
+
+        .footer-info p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .footer-links a,
+        .footer-social a {
+            color: #a5d6a7;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover,
+        .footer-social a:hover {
+            color: #76ff03; /* Verde vibrante no hover */
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Espaço entre os ícones sociais */
+        }
+
+        .footer-social .social-icon {
+            width: 28px; /* Tamanho dos ícones */
+            height: 28px;
+            /* Filtro para mudar a cor do ícone SVG/PNG para o verde claro do site */
+            filter: brightness(0) saturate(100%) invert(85%) sepia(18%) saturate(308%) hue-rotate(69deg) brightness(101%) contrast(85%); 
+            transition: filter 0.3s ease;
+        }
+
+        .footer-social a:hover .social-icon {
+            /* Filtro para mudar a cor do ícone SVG/PNG para o verde vibrante no hover */
+            filter: brightness(0) saturate(100%) invert(69%) sepia(61%) saturate(547%) hue-rotate(58deg) brightness(101%) contrast(101%); 
+        }
+
+        /* --- Responsividade (Media Queries para diferentes tamanhos de tela) --- */
+        @media (max-width: 1024px) {
+            header {
+                flex-direction: column; /* Cabeçalho em coluna em telas menores */
+                padding: 15px 20px;
+            }
+            .header-palmeiras-title {
+                margin-bottom: 10px;
+                font-size: 1.5em;
+            }
+            nav {
+                justify-content: center;
+                padding: 0;
+            }
+            nav a {
+                margin: 0 10px;
+            }
+            .titles-section {
+                padding: 40px 15px;
+            }
+            .titles-section h2 {
+                font-size: 2.5em;
+            }
+            .titles-section p {
+                font-size: 1em;
+            }
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-links,
+            .footer-social {
+                margin-top: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 15px; 
+            }
+            .header-palmeiras-title {
+                font-size: 1.3em;
+            }
+            nav a {
+                margin: 0 8px; 
+                font-size: 1em;
+            }
+            .titles-section h2 {
+                font-size: 2em; 
+            }
+            .titles-section p {
+                font-size: 0.95em; 
+            }
+            .footer-info p {
+                font-size: 0.85em;
+            }
+            .footer-links a {
+                display: block; /* Links do rodapé empilhados */
+                margin: 10px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 10px 10px;
+                flex-direction: column; 
+                align-items: center;
+            }
+            nav {
+                margin-top: 5px; 
+            }
+            nav a {
+                margin: 0 5px; 
+                font-size: 0.9em;
+            }
+            .titles-section {
+                padding: 30px 10px;
+            }
+            .titles-section h2 {
+                font-size: 1.8em;
+            }
+            .titles-section p {
+                font-size: 0.9em;
+            }
+            footer {
+                padding: 30px 15px;
+            }
+            .footer-info p {
+                font-size: 0.8em;
+            }
+            .footer-social .social-icon {
+                width: 24px; 
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-palmeiras-title">
+            <span class="palmeiras-gradient">Palmeiras</span>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#about-section">Sobre</a>
+            <a href="titulos.html">Títulos</a>
+        </nav>
+    </header>
+
+    <div class="page-hero-spacing"></div>
+
+    <main>
+        <section id="titles-section" class="titles-section">
+            <h2>Nossas Conquistas Inesquecíveis</h2>
+            <p>
+                Ao longo de mais de um século de história, a Sociedade Esportiva Palmeiras construiu uma galeria de troféus invejável, marcando seu nome entre os maiores vencedores do futebol brasileiro e sul-americano. Cada taça é um capítulo de luta, dedicação e a paixão inabalável de uma nação alviverde.
+            </p>
+            <p>
+                Confira abaixo algumas das nossas principais conquistas:
+            </p>
+
+            <ul>
+                <li>Copa Libertadores da América <span>(1999, 2020, 2021)</span></li>
+                <li>Campeonato Brasileiro Série A <span>(1960, 1967, 1967, 1969, 1972, 1973, 1993, 1994, 2016, 2018, 2022, 2023)</span></li>
+                <li>Copa do Brasil <span>(1998, 2012, 2015, 2020)</span></li>
+                <li>Campeonato Paulista <span>(26 títulos, incluindo 2020, 2022, 2023, 2024)</span></li>
+                <li>Copa Rio <span>(1951)</span></li>
+                <li>Supercopa do Brasil <span>(2023)</span></li>
+                <li>Campeonato Brasileiro Série B <span>(2003)</span></li>
+                <li>Torneio Rio-São Paulo <span>(1933, 1951, 1965, 1993, 2000)</span></li>
+            </ul>
+
+            <p>
+                Esta lista representa apenas uma parte da vasta coleção de troféus que o Palmeiras orgulhosamente possui. A cada dia, continuamos a buscar novas glórias para a história palestrina!
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <p>© 2025 Sociedade Esportiva Palmeiras. Todos os direitos reservados.</p>
+                <p>Website desenvolvido com paixão alviverde.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Termos de Uso</a>
+                <a href="#">Política de Privacidade</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://facebook.com/Palmeiras" target="_blank" rel="noopener noreferrer" aria-label="Facebook do Palmeiras">
+                    <img src="img/icon-facebook.png" alt="Facebook" class="social-icon">
+                </a>
+                <a href="https://twitter.com/Palmeiras" target="_blank" rel="noopener noreferrer" aria-label="Twitter do Palmeiras">
+                    <img src="img/icon-twitter.png" alt="Twitter" class="social-icon">
+                </a>
+                <a href="https://instagram.com/Palmeiras" target="_blank" rel="noopener noreferrer" aria-label="Instagram do Palmeiras">
+                    <img src="img/icon-instagram.png" alt="Instagram" class="social-icon">
+                </a>
+                <a href="https://youtube.com/Palmeiras" target="_blank" rel="noopener noreferrer" aria-label="YouTube do Palmeiras">
+                    <img src="img/icon-youtube.png" alt="YouTube" class="social-icon">
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

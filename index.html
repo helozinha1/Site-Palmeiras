@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sociedade Esportiva Palmeiras</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #004d40;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: rgba(5, 33, 9, 0.8);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            box-sizing: border-box;
+        }
+
+        .header-palmeiras-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-palmeiras-title .palmeiras-gradient {
+            background: linear-gradient(to right, #76ff03, #008000, #004d40);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent; /* fallback */
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #76ff03;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('image.png'); /* **SUBSTITUA POR SEU CAMINHO REAL DA IMAGEM DE FUNDO** */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .hero-green-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            width: 90%;
+            padding: 0 40px;
+            box-sizing: border-box;
+        }
+
+        .hero-content {
+            text-align: left;
+            flex-grow: 1;
+            padding-left: 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-size: 5em;
+            margin-top: 0;
+            line-height: 0.9;
+            font-weight: 700;
+        }
+
+        .palmeiras-gradient {
+            background: linear-gradient(to right, #76ff03, #008000, #004d40);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent; /* fallback */
+        }
+
+        .saiba-mais-btn {
+            background-color: #008000;
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin-top: 40px;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .saiba-mais-btn:hover {
+            background-color: #005f00;
+            transform: translateY(-3px);
+        }
+
+        .palmeiras-logo {
+            width: 250px;
+            height: auto;
+            display: block;
+            z-index: 3;
+            flex-shrink: 0;
+        }
+
+        /* --- Seção "Sobre" --- */
+        .about-section {
+            background-color: #ffffff;
+            color: #333;
+            padding: 60px 20px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-section h2 {
+            color: #004d40;
+            font-size: 3em;
+            margin-bottom: 30px;
+            font-weight: 700; 
+        }
+
+        .about-section p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400; 
+        }
+
+        /* --- Estilos do Carrossel Swiper --- */
+        .player-carousel-section {
+            padding: 40px 0;
+            background-color: #ffffff; 
+            text-align: center;
+        }
+
+        .carousel-title {
+            color: #004d40;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+
+        /* Container principal do Swiper */
+        .swiper {
+            width: 100%;
+            height: auto;
+            padding: 20px 0; 
+        }
+
+        /* Estilo de cada slide dentro do Swiper */
+        .swiper-slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: #f0f0f0; 
+            border-radius: 10px;
+            padding: 20px 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: grab; 
+            box-sizing: border-box; 
+        }
+
+        .swiper-slide:active {
+            cursor: grabbing; 
+        }
+
+        .swiper-slide:hover {
+            transform: translateY(-8px); 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .swiper-slide img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 4px solid #008000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .swiper-slide span {
+            display: block;
+            color: #333;
+            font-weight: bold; 
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .swiper-slide small {
+            display: block;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* Estilos dos botões de navegação do Swiper */
+        .swiper-button-prev,
+        .swiper-button-next {
+            color: #008000; 
+            top: 50%; 
+            transform: translateY(-50%);
+            font-size: 2em; 
+            font-weight: bold;
+        }
+
+        .swiper-button-prev::after,
+        .swiper-button-next::after {
+            font-size: 1.5em; 
+        }
+
+        /* Estilos da paginação (bolinhas) */
+        .swiper-pagination-bullet {
+            background: #ccc;
+            opacity: 1;
+            transition: background-color 0.3s ease;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #008000; 
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #052109; /* Verde bem escuro, quase preto */
+            color: #a5d6a7; /* Verde claro para o texto */
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.9em;
+            border-top: 3px solid #004d40; /* Linha verde mais escura no topo */
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap; /* Permite que os itens quebrem a linha */
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px; /* Espaço entre os itens do footer */
+        }
+
+        .footer-info p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .footer-links a,
+        .footer-social a {
+            color: #a5d6a7;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover,
+        .footer-social a:hover {
+            color: #76ff03; /* Verde vibrante no hover */
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Espaço entre os ícones sociais */
+        }
+
+        .footer-social .social-icon {
+            width: 28px; /* Tamanho dos ícones */
+            height: 28px;
+            filter: brightness(0) saturate(100%) invert(85%) sepia(18%) saturate(308%) hue-rotate(69deg) brightness(101%) contrast(85%); /* Cor verde claro */
+            transition: filter 0.3s ease;
+        }
+
+        .footer-social a:hover .social-icon {
+            filter: brightness(0) saturate(100%) invert(69%) sepia(61%) saturate(547%) hue-rotate(58deg) brightness(101%) contrast(101%); /* Cor verde vibrante no hover */
+        }
+
+
+        /* --- Responsividade para TELAS MAIORES (Desktop/Tablet landscape) --- */
+        @media (max-width: 1024px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 0 20px;
+            }
+            .hero-content {
+                padding-left: 0;
+                margin-bottom: 30px;
+                text-align: center; /* Centraliza o conteúdo hero para tablets */
+            }
+            .palmeiras-logo {
+                width: 200px;
+            }
+            header {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+            .header-palmeiras-title {
+                margin-bottom: 10px;
+                font-size: 1.5em;
+            }
+            nav {
+                justify-content: center;
+                padding: 0;
+            }
+            nav a {
+                margin: 0 10px;
+            }
+
+            .about-section {
+                padding: 40px 15px;
+            }
+            .about-section h2 {
+                font-size: 2.5em;
+            }
+            .about-section p {
+                font-size: 1em;
+            }
+            
+            .swiper-slide {
+                width: 180px; 
+                padding: 15px 8px;
+            }
+            .swiper-slide img {
+                width: 120px;
+                height: 120px;
+            }
+            .carousel-title {
+                font-size: 2.2em; 
+            }
+            .swiper-button-prev,
+            .swiper-button-next {
+                font-size: 1.8em;
+            }
+            .swiper-button-prev::after,
+            .swiper-button-next::after {
+                font-size: 1.4em;
+            }
+
+            /* Responsividade do Footer */
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-links,
+            .footer-social {
+                margin-top: 15px;
+            }
+        }
+
+        /* --- Responsividade para TABLETS E CELULARES (Tablet portrait/Celular landscape) --- */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 3.5em;
+            }
+            .saiba-mais-btn {
+                padding: 12px 25px;
+                font-size: 1em;
+                margin: 20px auto 0 auto; /* Centraliza o botão */
+            }
+            .palmeiras-logo {
+                width: 150px;
+            }
+
+            header {
+                padding: 10px 15px; 
+            }
+            .header-palmeiras-title {
+                font-size: 1.3em;
+            }
+            nav a {
+                margin: 0 8px; 
+                font-size: 1em;
+            }
+
+            .about-section h2 {
+                font-size: 2em; 
+            }
+            .about-section p {
+                font-size: 0.95em; 
+            }
+
+            .swiper-slide {
+                width: 140px; 
+                padding: 10px 5px;
+            }
+            .swiper-slide img {
+                width: 100px;
+                height: 100px;
+            }
+            .swiper-slide span {
+                font-size: 1em; 
+            }
+            .swiper-slide small {
+                font-size: 0.8em; 
+            }
+            .carousel-title {
+                font-size: 1.8em;
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
+            .swiper-button-prev,
+            .swiper-button-next {
+                display: none; 
+            }
+            /* Responsividade do Footer */
+            .footer-info p {
+                font-size: 0.85em;
+            }
+            .footer-links a {
+                display: block; /* Links em bloco para melhor toque */
+                margin: 10px 0;
+            }
+        }
+
+        /* --- Responsividade para CELULARES PEQUENOS (Celular portrait) --- */
+        @media (max-width: 480px) {
+            .hero-section {
+                height: 80vh; 
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            h2 {
+                font-size: 2.8em;
+            }
+            .saiba-mais-btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+                margin: 20px auto 0 auto; /* Centraliza o botão */
+            }
+            .palmeiras-logo {
+                width: 120px;
+            }
+
+            header {
+                padding: 10px 10px;
+                flex-direction: column; 
+                align-items: center;
+            }
+            nav {
+                margin-top: 5px; 
+            }
+            nav a {
+                margin: 0 5px; 
+                font-size: 0.9em;
+            }
+
+            .about-section {
+                padding: 30px 10px;
+            }
+            .about-section h2 {
+                font-size: 1.8em;
+            }
+            .about-section p {
+                font-size: 0.9em;
+            }
+
+            .swiper-slide {
+                width: 100px; 
+                padding: 8px 5px;
+            }
+            .swiper-slide img {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 10px;
+            }
+            .swiper-slide span {
+                font-size: 0.9em;
+            }
+            .swiper-slide small {
+                font-size: 0.75em;
+            }
+            .carousel-title {
+                font-size: 1.5em;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            .swiper-pagination {
+                bottom: 5px !important; 
+            }
+            /* Responsividade do Footer */
+            footer {
+                padding: 30px 15px;
+            }
+            .footer-info p {
+                font-size: 0.8em;
+            }
+            .footer-social .social-icon {
+                width: 24px; 
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-palmeiras-title">
+            <span class="palmeiras-gradient">Palmeiras</span>
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#about-section">Sobre</a>
+            <a href="titulos.html">Títulos</a>
+        </nav>
+    </header>
+
+    <div class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-green-overlay"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Sociedade Esportiva</h1>
+                <h2><span class="palmeiras-gradient">Palmeiras</span></h2>
+                <a href="#" class="saiba-mais-btn">Saiba Mais</a>
+            </div>
+            <img src="logo.png" alt="Logo do Palmeiras" class="palmeiras-logo"> </div>
+    </div>
+
+    <section id="about-section" class="about-section">
+        <h2>Mais que um time, uma paixão: Sociedade Esportiva Palmeiras</h2>
+        <p>
+            Fundada em 26 de agosto de 1914 por imigrantes italianos, sob o nome de Palestra Italia, a Sociedade Esportiva Palmeiras transcendeu suas origens para se tornar um dos pilares do futebol brasileiro e sul-americano. Mais do que um clube, o Verdão — como é carinhosamente chamado por sua nação alviverde — representa uma história de glórias inesquecíveis, paixão inabalável e uma resiliência lendária.
+        </p>
+        <p>
+            Desde os primeiros dribles e gols, o Palmeiras forjou uma identidade de garra, luta e conquistas memoráveis. Seus gramados foram palco de grandes ídolos que marcaram gerações, protagonistas de rivalidades históricas que transcendem as quatro linhas e uma conexão profunda e indestrutível com sua imensa e apaixonada torcida.
+        </p>
+        <p>
+            Nosso caldeirão, o moderno Allianz Parque, um dos estádios mais imponentes e completos da América Latina, ecoa a cada jogo o canto da torcida, impulsionando o time rumo a novos triunfos. No presente, o Palmeiras continua a escrever sua história de sucesso, empilhando títulos, reafirmando sua hegemonia e consolidando seu lugar de destaque não apenas no cenário esportivo, mas no coração de milhões de alviverdes em todo o mundo. Aqui é Palmeiras!
+        </p>
+
+        <div class="player-carousel-section">
+            <h2 class="carousel-title">Nosso Elenco Titular (Maio/2025)</h2>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="img/weverton.png" alt="Weverton">
+                        <span>Weverton</span>
+                        <small>Goleiro</small>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/mayke.png" alt="Mayke">
+                        <span>Mayke</span>
+                        <small>Lateral Direito</small>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/mauricio.png" alt="Mauricio">
+                        <span>Mauricio</span>
+                        <small>Meia</small>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/murilo.png" alt="Murilo">
+                        <span>Murilo</span>
+                        <small>Zagueiro</small>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/piquerez.png" alt="Piquerez">
+                        <span>Piquerez</span>
+                        <small>Lateral Esquerdo</small>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/anibalmoreno.png" alt="Aníbal Moreno">
+                        <span>A. Moreno</span>
+                        <small>Volante</small>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/richardrios.png" alt="Richard Ríos">
+                        <span>R. Ríos</span>
+                        <small>Volante/Meia</small>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/raphaelveiga.png" alt="Raphael Veiga">
+                        <span>R. Veiga</span>
+                        <small>Meia</small>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/felipeanderson.png" alt="Felipe Anderson">
+                        <span>F. Anderson</span>
+                        <small>Meia-Atacante</small>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/paulinho.png" alt="Paulinho">
+                        <span>Paulinho</span>
+                        <small>Atacante</small>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/estevao.png" alt="Estêvão">
+                        <span>Estêvão</span>
+                        <small>Atacante</small>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/vitorroque.png" alt="Vitor Roque">
+                        <span>Vitor Roque</span>
+                        <small>Atacante (Projeção)</small>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/flacolopez.png" alt="Flaco López">
+                        <span>Flaco López</span>
+                        <small>Atacante (Opção)</small>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/facundotorres.png" alt="Facundo Torres">
+                        <span>F. Torres</span>
+                        <small>Atacante (Opção)</small>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/abelferreira.png" alt="Abel Ferreira">
+                        <span>Abel Ferreira</span>
+                        <small>Técnico</small>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <p>© 2025 Sociedade Esportiva Palmeiras. Todos os direitos reservados.</p>
+                <p>Website desenvolvido com paixão alviverde.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Termos de Uso</a>
+                <a href="#">Política de Privacidade</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://facebook.com/Palmeiras" target="_blank" aria-label="Facebook do Palmeiras">
+                    <img src="img/icon-facebook.png" alt="Facebook" class="social-icon">
+                </a>
+                <a href="https://twitter.com/Palmeiras" target="_blank" aria-label="Twitter do Palmeiras">
+                    <img src="img/icon-twitter.png" alt="Twitter" class="social-icon">
+                </a>
+                <a href="https://instagram.com/Palmeiras" target="_blank" aria-label="Instagram do Palmeiras">
+                    <img src="img/icon-instagram.png" alt="Instagram" class="social-icon">
+                </a>
+                <a href="https://youtube.com/Palmeiras" target="_blank" aria-label="YouTube do Palmeiras">
+                    <img src="img/icon-youtube.png" alt="YouTube" class="social-icon">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 'auto', 
+            spaceBetween: 30, 
+            centeredSlides: true, 
+            grabCursor: true, 
+            loop: true, 
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 'auto',
+                    spaceBetween: 20,
+                    centeredSlides: false, 
+                },
+                768: {
+                    slidesPerView: 3, 
+                    spaceBetween: 30,
+                    centeredSlides: false,
+                },
+                1024: {
+                    slidesPerView: 4, 
+                    spaceBetween: 40,
+                    centeredSlides: false,
+                },
+                1280: { 
+                    slidesPerView: 5,
+                    spaceBetween: 40,
+                    centeredSlides: false,
+                },
+            },
+        });
+    </script>
+
+</body>
+</html>

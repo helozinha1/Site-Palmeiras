@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carregando...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Impede a rolagem da página durante o carregamento */
+            background-color: #004d40; /* Fundo verde escuro do Palmeiras */
+            display: flex; /* Usa flexbox para centralizar o conteúdo */
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center; /* Centraliza verticalmente */
+            height: 100vh; /* Garante que a página ocupa a altura total da tela */
+            font-family: 'Roboto', sans-serif; /* Aplica a fonte Roboto */
+            color: white; /* Cor do texto branco */
+        }
+
+        .loading-container {
+            text-align: center; /* Centraliza o texto e a logo dentro do container */
+            opacity: 0; /* Começa invisível para um efeito de fade-in */
+            animation: fadeIn 1s forwards; /* Animação de fade-in */
+        }
+
+        .logo {
+            /* Certifique-se de que o caminho para sua logo está correto */
+            /* Exemplo: se sua logo está em uma pasta 'img' ao lado do arquivo HTML */
+            background-image: url('logo.png'); 
+            background-size: contain; /* Ajusta a logo para caber dentro do elemento */
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 180px; /* Largura da logo */
+            height: 180px; /* Altura da logo */
+            margin: 0 auto 30px; /* Centraliza a logo e adiciona margem inferior */
+        }
+
+        .loading-text {
+            font-size: 2.5em; /* Tamanho do texto "Acesso Permitido Em" */
+            font-weight: 700; /* Negrito */
+            text-transform: uppercase; /* Transforma o texto em maiúsculas */
+            letter-spacing: 3px; /* Espaçamento entre as letras */
+            margin-bottom: 10px; /* Espaço abaixo do texto */
+        }
+
+        .dots-animation {
+            font-size: 3em; /* Tamanho dos pontos */
+            font-weight: 700;
+            color: #76ff03; /* Cor verde claro para os pontos */
+            display: inline-block; /* Permite controlar o espaçamento e animação */
+            width: 50px; /* Garante que ocupe um espaço fixo para evitar "pulinhos" */
+            text-align: left;
+        }
+
+        /* Animação de fade-in para a página inteira */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container">
+        <div class="logo"></div>
+        <p class="loading-text">Acesso Permitido</p>
+        <div class="dots-animation" id="loadingDots"></div> </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingDotsElement = document.getElementById('loadingDots');
+            let dotCount = 0;
+
+            // Função para animar os três pontos
+            function animateDots() {
+                let dots = '';
+                for (let i = 0; i < dotCount; i++) {
+                    dots += '.';
+                }
+                loadingDotsElement.textContent = dots;
+                dotCount = (dotCount + 1) % 4; // Ciclo de 0 a 3 pontos
+
+                // Chama a função novamente após 500ms
+                setTimeout(animateDots, 500); 
+            }
+
+            animateDots(); // Inicia a animação dos pontos
+
+            // Define o tempo de espera antes de redirecionar para a página principal
+            // Ajuste o valor (em milissegundos) conforme desejar
+            setTimeout(function() {
+                window.location.href = 'index.html'; // Redireciona para sua página principal
+            }, 3000); // Exemplo: 3000 milissegundos = 3 segundos
+        });
+    </script>
+</body>
+</html>
