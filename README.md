@@ -1,7 +1,7 @@
 # Site Palmeiras 💚🐷
 
 ## Descrição do Projeto
-Este projeto é um website dedicado à **Sociedade Esportiva Palmeiras**, criado para celebrar a história, as glórias e a paixão pelo clube. Ele serve como uma **interface web para o ecossistema Palmeiras** que você tem desenvolvido, complementando a [API do Palmeiras](https://github.com/helozinha1/Nome-Do-Seu-Repositorio-API) e o [APP do Palmeiras](https://github.com/helozinha1/Nome-Do-Seu-Repositorio-APP). 🚀
+Este projeto é um website dedicado à **Sociedade Esportiva Palmeiras**, criado para celebrar a história, as glórias e a paixão pelo clube. Ele serve como uma **interface web para o ecossistema Palmeiras** que você tem desenvolvido, complementando a [API do Palmeiras](https://github.com/helozinha1/API-Palmeiras) e o [APP do Palmeiras](https://github.com/helozinha1/APP-Palmeiras). 🚀
 
 ## Funcionalidades Principais
 * **Página Inicial (`index.html`):** A vitrine do site, com informações gerais sobre o clube e possivelmente um carrossel de elementos visuais. 🏠
@@ -37,8 +37,8 @@ Para rodar e navegar pelo site em seu próprio computador, siga os passos abaixo
 ## Ecossistema Palmeiras
 Este projeto faz parte de um conjunto de soluções dedicadas ao Palmeiras. Confira os outros repositórios relacionados no meu perfil: 🔗
 
-* **[API do Palmeiras](https://github.com/helozinha1/Nome-Do-Seu-Repositorio-API)** (Lembre-se de **substituir este link** pelo nome real do repositório da sua API)
-* **[APP do Palmeiras](https://github.com/helozinha1/Nome-Do-Seu-Repositorio-APP)** (Lembre-se de **substituir este link** pelo nome real do repositório do seu Aplicativo)
+* **[API do Palmeiras](https://github.com/helozinha1/API-Palmeiras)**
+* **[APP do Palmeiras](https://github.com/helozinha1/APP-Palmeiras)**
 
 ## Autor
 * **helozinha1** 👋
